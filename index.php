@@ -1,5 +1,4 @@
 <?php
 
-var_dump($_SERVER);
-
-require_once 'views/index.view.php';
+require_once 'kernel.php';
+require_once 'router.php';

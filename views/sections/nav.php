@@ -6,11 +6,11 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="index.php" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/" class="nav-link px-2 text-secondary">Todos</a></li>
             </ul>
 
             <div class="text-end">
-                <a href="login.php" class="p-2 btn btn-outline-light me-2">Login</a>
+                <a href="login" class="p-2 btn btn-outline-light me-2">Login</a>
             </div>
         </div>
     </div>

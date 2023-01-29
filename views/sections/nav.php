@@ -6,7 +6,17 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 text-secondary">Todos</a></li>
+                <li>
+                    <a href="/"
+                       class="nav-link px-2
+                       <?php echo urlIs('/') ? 'text-white' : 'text-secondary' ?>"
+                    >Заметки 📄</a>
+                </li>
+                <li>
+                    <a href="/todos/create"
+                       class="nav-link px-2 <?php echo urlIs('/todos/create') ? 'text-white' : 'text-secondary' ?>""
+                    >Создать заметку ➕</a>
+                </li>
             </ul>
 
             <div class="text-end">

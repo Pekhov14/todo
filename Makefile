@@ -1,2 +1,2 @@
-run:
-	php -S localhost:8007
+server:
+	php -S localhost:8000

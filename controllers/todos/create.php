@@ -1,16 +1,13 @@
 <?php
 
-require_once 'Database.php';
-require_once 'helpers.php';
-require_once 'Validator.php';
-
 $title = 'Создание новой заметки';
 
-$config = require('config.php');
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errors = [];
 
     if (! Validator::string($_POST['name'])) {
         $errors['name'] = 'Имя обязательно к заполнению';
@@ -38,4 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once 'views/todo-create.view.php';
+view('todos/create.view.php', [
+    'title'  => $title,
+    'errors' => $errors,
+]);

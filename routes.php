@@ -1,7 +1,7 @@
 <?php
 
 return [
-    '/'             => 'controllers/todos.php',
+    '/'             => 'controllers/todos/index.php',
     '/login'        => 'controllers/login.php',
-    '/todos/create' => 'controllers/todo-create.php',
+    '/todos/create' => 'controllers/todos/create.php',
 ];

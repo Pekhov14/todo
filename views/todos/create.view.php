@@ -1,6 +1,5 @@
-
-<?php require_once 'sections/head.php' ?>
-<?php require_once 'sections/nav.php' ?>
+<?php require base_path('views/sections/head.php'); ?>
+<?php require base_path('views/sections/nav.php'); ?>
 
 <div class="container">
 
@@ -58,8 +57,4 @@
     </form>
 </div>
 
-<script>
-
-</script>
-
-<?php require_once 'sections/footer.php' ?>
+<?php require base_path('views/sections/footer.php'); ?>

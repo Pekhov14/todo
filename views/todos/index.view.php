@@ -1,9 +1,5 @@
-
-
-<?php require_once 'sections/head.php' ?>
-<?php require_once 'sections/nav.php' ?>
-
-
+<?php require base_path('views/sections/head.php'); ?>
+<?php require base_path('views/sections/nav.php'); ?>
 
 <div class="container overflow-hidden content-space-t-4">
     <h1>Todos 😊</h1>
@@ -32,4 +28,4 @@
     </table>
 </div>
 
-<?php require_once 'sections/footer.php' ?>
+<?php require base_path('views/sections/footer.php'); ?>

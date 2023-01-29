@@ -1,5 +1,8 @@
 <?php
 
+use Core\Database;
+use Core\Validator;
+
 $title = 'Создание новой заметки';
 
 $config = require base_path('config.php');

@@ -1,7 +1,9 @@
 <?php
 
+use Core\Database;
+
 $config = require base_path('config.php');
-$db = new Database($config['database']);
+$db     = new Database($config['database']);
 
 // Move to model, забирать только нужные столбцы
 $todos = $db->query('SELECT * FROM tasks')->findAll();

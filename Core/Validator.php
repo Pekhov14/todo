@@ -1,8 +1,9 @@
 <?php
 
+namespace Core;
+
 class Validator
 {
-    // Статика для чистых функций
     public static function string($value, $min = 1, $max = INF): bool
     {
         $value = trim($value);

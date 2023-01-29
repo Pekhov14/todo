@@ -2,6 +2,7 @@
 
 require_once 'Database.php';
 require_once 'helpers.php';
+require_once 'Validator.php';
 
 $title = 'Создание новой заметки';
 
@@ -11,24 +12,16 @@ $db = new Database($config['database']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
-    // Валидирывать в роутере $_POST
-    if (mb_strlen($_POST['name']) === 0) {
+    if (! Validator::string($_POST['name'])) {
         $errors['name'] = 'Имя обязательно к заполнению';
     }
 
-    if (mb_strlen($_POST['email']) === 0) {
-        $errors['email'] = 'email обязателен к заполнению';
-    }
-    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'Email не корректный';
+    if (! Validator::email($_POST['email'])) {
+        $errors['email'] = 'email должен быть корректным';
     }
 
-    if (mb_strlen($_POST['description']) === 0) {
-        $errors['description'] = 'Описание обязательно к заполнению';
-    }
-
-    if (mb_strlen($_POST['description']) > 5000) {
-        $errors['description'] = 'Текст больше 5,000 символов';
+    if (! Validator::string($_POST['description'], max:5000)) {
+        $errors['description'] = 'Текст должен быть в пределах от 1 до 5,000 символов';
     }
 
     $query = 'INSERT INTO tasks(name, email, description, status) VALUES(:name, :email, :description, :status)';

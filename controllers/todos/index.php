@@ -25,13 +25,19 @@ $todos = $model->getAllTodos($start, $pageLimit);
 $prepareTodos = [];
 
 foreach ($todos as $todo) {
-    $prepareTodos[] = [
+    $todoData = [
         'id'          => $todo['id'],
         'name'        => htmlspecialchars($todo['name']),
         'email'       => htmlspecialchars($todo['email']),
         'description' => htmlspecialchars($todo['description']),
         'status'      => TodoStatus::getValue($todo['status']),
+        'edit'        => '',
     ];
+
+//    if admin
+    $todoData['edit'] = "<a href='todo?id={$todo['id']}' class='btn btn-primary'>Редактировать</a>";
+
+    $prepareTodos[] = $todoData;
 }
 
 $pagination = new Pagination();

@@ -15,8 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $todo['name']; ?></h5>
                         <p class="card-text"><?php echo $todo['description']; ?></p>
-                        <!-- TODO: Ссылку в контроллере сделать -->
-                        <a href="<?php echo 'todo?id='. $todo['id']; ?>" class="btn btn-primary">Редактировать</a>
+                        <?php echo $todo['edit']; ?>
                     </div>
                     <div class="card-footer">
                         <span><?php echo $todo['status']; ?></span>

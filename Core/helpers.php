@@ -14,6 +14,12 @@ function urlIs(string $value): bool
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
+function abort(int $code = 404): never {
+    http_response_code($code);
+    require base_path("views/{$code}.view.php");
+    die();
+}
+
 function authorize($condition, $status = Response::FORBIDDEN)
 {
     if (! $condition) {

@@ -12,14 +12,13 @@ $taskId = $_GET['id'];
 
 $errors = [];
 
-$user = 'guest';
+//$user = 'guest';
+$user = 'admin';
 
 authorize($user === 'admin');
 
 // TODO: Проверка на админа
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $user = 'guest';
 
     authorize($user === 'admin');
 

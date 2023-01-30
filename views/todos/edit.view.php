@@ -6,25 +6,44 @@
 
 <!--  todo добавить стили  -->
     <div>
-        <form action="" method="post">
-            <p>Имя: <?php echo $task['name']; ?></p>
-            <p>Email: <?php echo $task['email']; ?></p>
-            <span>Описание</span>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Имя: <?php echo $task['name']; ?></li>
+            <li class="list-group-item">Email: <?php echo $task['email']; ?></li>
+            <li class="list-group-item"></li>
+        </ul>
+
+        <form action="" method="POST">
+            <div class="mb-3">
+                <label for="Textarea" class="form-label">Описание</label>
+                <textarea class="form-control"
+                          id="Textarea"
+                          rows="3"
+                          name="description"
+                ><?php echo $task['description']; ?></textarea>
+            </div>
+
+            <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
-            <textarea name="description"><?php echo $task['description']; ?></textarea>
-            <spna>Выполнено</spna>
-            <input type="checkbox"
-                   name="status"
-                   <?php echo ($task['status'] === 'done') ? 'checked' : ''; ?>
-            >
-            <button class="btn btn-dark" type="submit">Сохранить</button>
+            <div class="form-check">
+                <input type="checkbox"
+                       name="status"
+                       class="form-check-input"
+                       type="checkbox"
+                       value=""
+                       id="flexCheckDefault"
+                    <?php echo ($task['status'] === 'done') ? 'checked' : ''; ?>
+                >
+                <label class="form-check-label" for="flexCheckDefault">
+                    Выполнено
+                </label>
+            </div>
+
+            <button class="btn btn-danger mt-4"
+                    type="submit"
+            >Сохранить</button>
         </form>
     </div>
 
-<!-- Только если авторизирован -->
-<!--    <a href="todo/edit?id=--><?php //echo $task['id']; ?><!--"-->
-<!--       class="btn-dark"-->
-<!--    >Редактировать</a>-->
 </div>
 
 <?php require base_path('views/sections/footer.php'); ?>

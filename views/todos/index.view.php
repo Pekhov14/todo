@@ -25,7 +25,8 @@
                     <td><?php echo htmlspecialchars($todo['status']); ?> 🆕✅</td>
                     <td>
                         <!--  для админа -->
-                        <a href="<?php echo 'todo?id='. $todo['id']; ?>">
+                        <a href="<?php echo 'todo?id='. $todo['id']; ?>"
+                           class="btn btn-primary">
                             Редактировать
                         </a>
                     </td>

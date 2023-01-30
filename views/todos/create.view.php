@@ -4,7 +4,7 @@
 <div class="container">
 
 <h1><?php echo $title ?></h1>
-    <form method="POST">
+    <form method="POST" action="/todos">
         <div class="mb-3">
             <?php if (isset($errors['name'])): ?>
                 <div class="alert alert-danger" role="alert">

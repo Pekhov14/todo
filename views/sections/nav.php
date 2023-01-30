@@ -13,8 +13,8 @@
                     >Заметки 📄</a>
                 </li>
                 <li>
-                    <a href="/todos/create"
-                       class="nav-link px-2 <?php echo urlIs('/todos/create') ? 'text-white' : 'text-secondary' ?>""
+                    <a href="/todos"
+                       class="nav-link px-2 <?php echo urlIs('/todos') ? 'text-white' : 'text-secondary' ?>""
                     >Создать заметку ➕</a>
                 </li>
             </ul>

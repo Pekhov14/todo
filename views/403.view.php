@@ -4,7 +4,7 @@
 
     <main>
     <div class="mx-auto container overflow-hidden content-space-t-4 text-center pt-2">
-        <h1>Страница не найдена 😭</h1>
+        <h1>Ой, у тебя доступа 🤷</h1>
         <p><a href="/">Go to home</a></p>
     </div>
 </main>

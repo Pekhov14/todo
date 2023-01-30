@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['email'] = 'email должен быть корректным';
     }
 
-    if (! Validator::string($_POST['description'], max:5000)) {
+    if (! Validator::string($_POST['description'], max:1000)) {
         $errors['description'] = 'Текст должен быть в пределах от 1 до 5,000 символов';
     }
 

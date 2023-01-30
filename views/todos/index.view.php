@@ -7,10 +7,12 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Статус</th>
             <th scope="col">Имя пользователя</th>
             <th scope="col">е-mail</th>
             <th scope="col">Описание</th>
+            <th scope="col">Статус</th>
+            <!--  для админа -->
+            <th scope="col">Действие</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +23,12 @@
                     <td><?php echo htmlspecialchars($todo['email']); ?></td>
                     <td><?php echo htmlspecialchars($todo['description']); ?></td>
                     <td><?php echo htmlspecialchars($todo['status']); ?> 🆕✅</td>
+                    <td>
+                        <!--  для админа -->
+                        <a href="<?php echo 'todo?id='. $todo['id']; ?>">
+                            Редактировать
+                        </a>
+                    </td>
                 </tr>
         <?php endforeach;?>
 

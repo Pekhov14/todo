@@ -2,39 +2,38 @@
 <?php require base_path('views/sections/nav.php'); ?>
 
 <div class="container overflow-hidden content-space-t-4">
-    <h1>Todos 😊</h1>
+    <h1 class="text-center mb-5">Todos 😊</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Имя пользователя</th>
-            <th scope="col">е-mail</th>
-            <th scope="col">Описание</th>
-            <th scope="col">Статус</th>
-            <!--  для админа -->
-            <th scope="col">Действие</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-            foreach ($todos as $todo): ?>
-                <tr>
-                    <th scope="row"><?php echo htmlspecialchars($todo['name']); ?></th>
-                    <td><?php echo htmlspecialchars($todo['email']); ?></td>
-                    <td><?php echo htmlspecialchars($todo['description']); ?></td>
-                    <td><?php echo htmlspecialchars($todo['status']); ?> 🆕✅</td>
-                    <td>
-                        <!--  для админа -->
-                        <a href="<?php echo 'todo?id='. $todo['id']; ?>"
-                           class="btn btn-primary">
-                            Редактировать
-                        </a>
-                    </td>
-                </tr>
-        <?php endforeach;?>
 
-        </tbody>
-    </table>
+    <?php foreach ($todos as $todo): ?>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <span><?php echo $todo['email']; ?></span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $todo['name']; ?></h5>
+                        <p class="card-text"><?php echo $todo['description']; ?></p>
+                        <!-- TODO: Ссылку в контроллере сделать -->
+                        <a href="<?php echo 'todo?id='. $todo['id']; ?>" class="btn btn-primary">Редактировать</a>
+                    </div>
+                    <div class="card-footer">
+                        <span><?php echo $todo['status']; ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach;?>
+
+    <div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <?php require base_path('views/sections/pagination.php'); ?>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?php require base_path('views/sections/footer.php'); ?>

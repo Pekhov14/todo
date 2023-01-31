@@ -14,17 +14,30 @@ class Todo
         $this->db = App::resolve(Database::class);
     }
 
-    public function getAllTodos($start, $limit)
+    public function getAllTodos($start, $limit, array $queryParams)
     {
-        return $this->db->query("
+        $query = "
             SELECT id
                  , name
                  , email
                  , description
                  , status
             FROM tasks
-            LIMIT {$start}, {$limit}
-        ")->findAll();
+            WHERE 1 = 1
+        ";
+
+        $data = [];
+
+        if (isset($queryParams['status'])) {
+            $query .= " AND status = :status";
+
+            $data['status'] = $queryParams['status'];
+        }
+
+
+        $query .= "  LIMIT {$start}, {$limit}";
+
+        return $this->db->query($query, $data)->findAll();
     }
 
     public function getCountTodos(): int

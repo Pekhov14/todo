@@ -9,18 +9,18 @@ class Pagination
         $data = [];
 
         for($i = 1; $i <= $pages; $i++) {
-            if (isset($queryData['page'])) {
-                if ($queryData['page'] > $pages) {
-                    abort();
-                }
-
-                $queryData['page'] = $i;
-            } else {
+            if (!array_key_exists('page', $queryData)) {
                 $queryData['page'] = 1;
             }
 
+            if ($queryData['page'] > $pages) {
+                abort();
+            }
+
+            $queryData['page'] = $i;
+
             $data[] = [
-                'url'   => '?' . http_build_query($queryData),
+                'url'   => (!empty($queryData)) ? '?' . http_build_query($queryData) : '',
                 'value' => $i
             ];
         }

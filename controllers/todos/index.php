@@ -42,8 +42,9 @@ foreach ($todos as $todo) {
 
 $chosenFilter = [];
 
-$chosenFilter['status']      = $queryParams['status'] ?? 'all';
-$chosenFilter['sorted_name'] = $queryParams['sorted_name'] ?? 'all';
+$chosenFilter['status']       = $queryParams['status'] ?? 'all';
+$chosenFilter['sorted_name']  = $queryParams['sorted_name'] ?? 'all';
+$chosenFilter['sorted_email'] = $queryParams['sorted_email'] ?? 'all';
 
 $statuses = [
     [
@@ -60,7 +61,7 @@ $statuses = [
     ],
 ];
 
-$sortByName = [
+$sort = [
     [
         'key'     => 'Выбрать',
         'value'   => 'all',
@@ -83,7 +84,7 @@ view('todos/index.view.php', [
     'todos'        => $prepareTodos,
     'pages'        => $pages,
     'statuses'     => $statuses,
-    'sortedName'   => $sortByName,
+    'sort'         => $sort,
     'currentPage'  => $page,
     'chosenFilter' => $chosenFilter,
     'paginations'  => $pagination,

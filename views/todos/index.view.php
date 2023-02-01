@@ -15,20 +15,28 @@
                             name="sorted_name"
                             onchange="this.form.submit()"
                     >
-                        <?php foreach ($sortedName as $name): ?>
+                        <?php foreach ($sort as $name): ?>
                             <option value="<?php echo $name['value']; ?>"
                                 <?php echo ($chosenFilter['sorted_name'] === $name['value']) ? 'selected' : '' ; ?>
                             ><?php echo $name['key']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-<!--                <div class="col-2">-->
-<!--                    <lable>По email</lable>-->
-<!--                    <select class="form-select mb-3" aria-label="Default select example">-->
-<!--                        <option value="1">One</option>-->
-<!--                        <option value="2">Two</option>-->
-<!--                    </select>-->
-<!--                </div>-->
+
+                <div class="col-2">
+                    <lable>Сортировать по email</lable>
+                    <select class="form-select mb-3"
+                            aria-label="Default select example"
+                            name="sorted_email"
+                            onchange="this.form.submit()"
+                    >
+                        <?php foreach ($sort as $name): ?>
+                            <option value="<?php echo $name['value']; ?>"
+                                <?php echo ($chosenFilter['sorted_email'] === $name['value']) ? 'selected' : '' ; ?>
+                            ><?php echo $name['key']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
                 <div class="col-2">
                     <lable>Сортировать по статусу</lable>

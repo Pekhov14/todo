@@ -16,6 +16,11 @@ class Todo
 
     public function getAllTodos(int $start, int $limit, array $queryParams)
     {
+        $data = [
+            'start' => $start,
+            'limit' => $limit,
+        ];
+
         $query = "
             SELECT id
                  , name
@@ -23,32 +28,8 @@ class Todo
                  , description
                  , status
             FROM tasks
-            WHERE 1 = 1
-        ";
-
-        $data = [
-            'start' => $start,
-            'limit' => $limit,
-        ];
-
-        if (isset($queryParams['status'])) {
-            $query .= " AND status = :status";
-
-            $data['status'] = $queryParams['status'];
-        }
-
-        // or sorted_email
-        if (isset($queryParams['sorted_name'])) {
-            $query .= " ORDER BY";
-        }
-
-        if (isset($queryParams['sorted_name'])) {
-            $query .= ($queryParams['sorted_name'] === 'desc')
-                ? " name DESC"
-                : " name ASC";
-        }
-
-
+            WHERE 1 = 1";
+        $query .= $this->buildSort($queryParams, $data);
         $query .= " LIMIT :start, :limit";
 
         return $this->db->query($query, $data)->findAll();
@@ -56,9 +37,17 @@ class Todo
 
     public function getCountTodos(array $queryParams): int
     {
-        $query = 'SELECT COUNT(id) AS count_todos FROM tasks WHERE 1 = 1';
-
         $data = [];
+
+        $query = 'SELECT COUNT(id) AS count_todos FROM tasks WHERE 1 = 1';
+        $query .= $this->buildSort($queryParams, $data);
+
+        return $this->db->query($query, $data)->find()['count_todos'];
+    }
+
+    private function buildSort(array $queryParams, &$data): string
+    {
+        $query = '';
 
         if (isset($queryParams['status'])) {
             $query .= " AND status = :status";
@@ -66,7 +55,7 @@ class Todo
             $data['status'] = $queryParams['status'];
         }
 
-        if (isset($queryParams['sorted_name'])) {
+        if (isset($queryParams['sorted_name']) || isset($queryParams['sorted_email'])) {
             $query .= " ORDER BY";
         }
 
@@ -76,6 +65,16 @@ class Todo
                 : " name ASC";
         }
 
-        return $this->db->query($query, $data)->find()['count_todos'];
+        if (isset($queryParams['sorted_name'], $queryParams['sorted_email'])) {
+            $query .= " ,";
+        }
+
+        if (isset($queryParams['sorted_email'])) {
+            $query .= ($queryParams['sorted_email'] === 'desc')
+                ? " email DESC"
+                : " email ASC";
+        }
+
+        return $query;
     }
 }

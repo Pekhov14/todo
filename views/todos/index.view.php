@@ -8,13 +8,20 @@
             <input type="hidden" value="<?php echo $currentPage; ?>" name="page">
             <div class="row">
                 <div class="col-3"></div>
-<!--                <div class="col-2">-->
-<!--                    <lable>По имени</lable>-->
-<!--                    <select class="form-select mb-3" aria-label="Default select example">-->
-<!--                        <option value="1">One</option>-->
-<!--                        <option value="2">Two</option>-->
-<!--                    </select>-->
-<!--                </div>-->
+                <div class="col-2">
+                    <lable>Сортировать по имени</lable>
+                    <select class="form-select mb-3"
+                            aria-label="Default select example"
+                            name="sorted_name"
+                            onchange="this.form.submit()"
+                    >
+                        <?php foreach ($sortedName as $name): ?>
+                            <option value="<?php echo $name['value']; ?>"
+                                <?php echo ($chosenFilter['sorted_name'] === $name['value']) ? 'selected' : '' ; ?>
+                            ><?php echo $name['key']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 <!--                <div class="col-2">-->
 <!--                    <lable>По email</lable>-->
 <!--                    <select class="form-select mb-3" aria-label="Default select example">-->
@@ -24,7 +31,7 @@
 <!--                </div>-->
 
                 <div class="col-2">
-                    <lable>По статусу</lable>
+                    <lable>Сортировать по статусу</lable>
                     <select class="form-select mb-3"
                             aria-label="Default select example"
                             name="status"

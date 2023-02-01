@@ -15,7 +15,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 $page = (isset($queryParams['page']) && $queryParams['page'] > 0) ? (int)$queryParams['page'] : 1;
 
 $pageLimit = 3;
-$count     = $model->getCountTodos();
+$count     = $model->getCountTodos($queryParams);
 
 $pages = ceil($count / $pageLimit);
 $start = ($page - 1) * $pageLimit;
@@ -40,14 +40,14 @@ foreach ($todos as $todo) {
     $prepareTodos[] = $todoData;
 }
 
-// Тут будет
 $chosenFilter = [];
 
-$chosenFilter['status'] = $queryParams['status'] ?? 'all';
+$chosenFilter['status']      = $queryParams['status'] ?? 'all';
+$chosenFilter['sorted_name'] = $queryParams['sorted_name'] ?? 'all';
 
 $statuses = [
     [
-        'key'     => 'Все',
+        'key'     => 'Все статусы',
         'value'   => 'all',
     ],
     [
@@ -60,6 +60,22 @@ $statuses = [
     ],
 ];
 
+$sortByName = [
+    [
+        'key'     => 'Выбрать',
+        'value'   => 'all',
+    ],
+    [
+        'key'     => 'По возрастанию',
+        'value'   => 'ask',
+    ],
+    [
+        'key'     => 'По убыванию',
+        'value'   => 'desc',
+    ],
+];
+
+
 $pagination = new Pagination();
 $pagination = $pagination->create($queryParams, $pages);
 
@@ -67,6 +83,7 @@ view('todos/index.view.php', [
     'todos'        => $prepareTodos,
     'pages'        => $pages,
     'statuses'     => $statuses,
+    'sortedName'   => $sortByName,
     'currentPage'  => $page,
     'chosenFilter' => $chosenFilter,
     'paginations'  => $pagination,

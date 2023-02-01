@@ -18,10 +18,29 @@ class Database {
         ]);
     }
 
+    private function bind($parameter, $value, $var_type = null)
+    {
+        if (is_null($var_type)) {
+            $var_type = match (true) {
+                is_bool($value) => PDO::PARAM_BOOL,
+                is_int($value)  => PDO::PARAM_INT,
+                is_null($value) => PDO::PARAM_NULL,
+                default         => PDO::PARAM_STR,
+            };
+        }
+
+        $this->statement->bindParam($parameter, $value, $var_type);
+    }
+
     public function query(string $query, $params = []): static
     {
         $this->statement = $this->connection->prepare($query);
-        $this->statement->execute($params);
+
+        foreach ($params as $param_key => $param_value) {
+            $this->bind(":{$param_key}", $param_value);
+        }
+
+        $this->statement->execute();
 
         return $this;
     }

@@ -36,5 +36,6 @@ $db->query($query, [
     'status'      => 'new',
 ]);
 
-header('location: /');
+
+header('location: /succes');
 exit();

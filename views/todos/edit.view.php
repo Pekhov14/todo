@@ -4,7 +4,6 @@
 <div class="container">
     <h1><?php echo $title ?></h1>
 
-<!--  todo добавить стили  -->
     <div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Имя: <?php echo $task['name']; ?></li>

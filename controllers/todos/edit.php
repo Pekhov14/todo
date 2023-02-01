@@ -6,9 +6,6 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
-//if (! isset($_SESSION['user'])) {
-//    abort(403);
-//}
 
 $title = 'Редактирование заметки';
 
@@ -35,7 +32,5 @@ if (empty($errors)) {
     $db->query($query, $data);
 }
 
-// TODO: Редирект на страницу успеха
-
-header('location: /');
+header('location: /succes');
 exit();

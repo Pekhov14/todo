@@ -3,6 +3,10 @@
 use Core\Validator;
 use models\Todo;
 
+if (! isset($_SESSION['user'])) {
+    abort(403);
+}
+
 $title = 'Редактирование заметки';
 
 $model = new Todo();

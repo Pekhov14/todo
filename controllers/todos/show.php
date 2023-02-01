@@ -2,9 +2,9 @@
 
 session_start();
 
-use Core\App;
-use Core\Database;
-use Core\Validator;
+use models\Todo;
+
+$model = new Todo();
 
 $actionButton = (isset($_SESSION['user']))
     ? '<a href="/logout" class="p-2 btn btn-outline-light me-2">Выйти</a>'
@@ -15,23 +15,11 @@ if (! isset($_SESSION['user'])) {
     abort(403);
 }
 
-$title = 'Редактирование заметки';
-
-$db = App::resolve(Database::class);
-
+$title  = 'Редактирование заметки';
 $taskId = $_GET['id'];
-
 $errors = [];
 
-$task = $db->query('
-    SELECT id
-         , name
-         , email
-         , description
-         , status
-    FROM tasks
-    WHERE id = :id
-', ['id' => $taskId])->findOrFail();
+$task = $model->getOneTodo($taskId);
 
 view('todos/edit.view.php', [
     'title'        => $title,

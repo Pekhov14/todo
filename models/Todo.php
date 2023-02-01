@@ -97,4 +97,17 @@ class Todo
             'status'      => 'new',
         ]);
     }
+
+    public function getOneTodo(int $taskId)
+    {
+        return $this->db->query('
+            SELECT id
+                 , name
+                 , email
+                 , description
+                 , status
+            FROM tasks
+            WHERE id = :id
+        ', ['id' => $taskId])->findOrFail();
+    }
 }

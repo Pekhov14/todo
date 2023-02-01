@@ -20,7 +20,7 @@
             </ul>
 
             <div class="text-end">
-                <a href="/login" class="p-2 btn btn-outline-light me-2">Login</a>
+                <?php echo $actionButton; ?>
             </div>
         </div>
     </div>

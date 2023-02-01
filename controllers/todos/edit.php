@@ -1,19 +1,20 @@
 <?php
 
+session_start();
+
 use Core\App;
 use Core\Database;
 use Core\Validator;
+
+//if (! isset($_SESSION['user'])) {
+//    abort(403);
+//}
 
 $title = 'Редактирование заметки';
 
 $db = App::resolve(Database::class);
 
 $errors = [];
-
-//$user = 'guest';
-$user = 'admin';
-
-authorize($user === 'admin');
 
 if (! Validator::string($_POST['description'], max:1000)) {
     $errors['description'] = 'Текст должен быть в пределах от 1 до 5,000 символов';

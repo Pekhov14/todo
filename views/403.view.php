@@ -1,6 +1,4 @@
 <?php require base_path('views/sections/head.php'); ?>
-<?php require base_path('views/sections/nav.php'); ?>
-
 
     <main>
     <div class="mx-auto container overflow-hidden content-space-t-4 text-center pt-2">

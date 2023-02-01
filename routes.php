@@ -1,7 +1,9 @@
 <?php
 
-$router->get('/login', 'controllers/login.php');
 $router->get('/', 'controllers/todos/index.php');
+$router->get('/login', 'controllers/auth/show.php');
+$router->post('/login', 'controllers/auth/login.php');
+$router->get('/logout', 'controllers/auth/logout.php');
 
 $router->get('/todos', 'controllers/todos/create.php');
 $router->post('/todos', 'controllers/todos/store.php');

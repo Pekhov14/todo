@@ -20,7 +20,6 @@ if (! Validator::string($_POST['description'], max:1000)) {
     $errors['description'] = 'Текст должен быть в пределах от 1 до 5,000 символов';
 }
 
-// Из $_POST перенести в переменные и во вьюхе значение переменной выводить просто, по дефолту пустое
 if (! empty($errors)) {
     return view('todos/create.view.php', [
         'title'  => 'Создание новой заметки',

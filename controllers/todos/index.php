@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use controllers\todos\TodoStatus;
 use Core\Pagination;
 use models\Todo;
@@ -34,8 +36,9 @@ foreach ($todos as $todo) {
         'edit'        => '',
     ];
 
-//    if admin
-    $todoData['edit'] = "<a href='todo?id={$todo['id']}' class='btn btn-primary'>Редактировать</a>";
+    if ((isset($_SESSION['user']))) {
+        $todoData['edit'] = "<a href='todo?id={$todo['id']}' class='btn btn-primary'>Редактировать</a>";
+    }
 
     $prepareTodos[] = $todoData;
 }
@@ -76,6 +79,10 @@ $sort = [
     ],
 ];
 
+$actionButton = (isset($_SESSION['user']))
+    ? '<a href="/logout" class="p-2 btn btn-outline-light me-2">Выйти</a>'
+    : '<a href="/login" class="p-2 btn btn-outline-light me-2">Войти</a>';
+
 
 $pagination = new Pagination();
 $pagination = $pagination->create($queryParams, $pages);
@@ -87,5 +94,6 @@ view('todos/index.view.php', [
     'sort'         => $sort,
     'currentPage'  => $page,
     'chosenFilter' => $chosenFilter,
+    'actionButton' => $actionButton,
     'paginations'  => $pagination,
 ]);

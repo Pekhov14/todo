@@ -77,4 +77,12 @@ class Todo
 
         return $query;
     }
+
+    public function edit(array $data): void
+    {
+        $query = "UPDATE tasks SET description = :description, status = :status";
+        $query .= ' WHERE id = :id';
+
+        $this->db->query($query, $data);
+    }
 }

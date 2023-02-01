@@ -1,15 +1,11 @@
 <?php
 
-session_start();
-
-use Core\App;
-use Core\Database;
 use Core\Validator;
-
+use models\Todo;
 
 $title = 'Редактирование заметки';
 
-$db = App::resolve(Database::class);
+$model = new Todo();
 
 $errors = [];
 
@@ -19,17 +15,13 @@ if (! Validator::string($_POST['description'], max:1000)) {
 
 $data = [
     'id'          => $_POST['id'],
-    'description' => $_POST['description'],
+    'description' => htmlspecialchars($_POST['description']),
+    'status' => (isset($_POST['status'])) ? 'done' : 'new',
 ];
 
-$query = "UPDATE tasks SET description = :description, status = :status";
-
-$data['status'] = (isset($_POST['status'])) ? 'done' : 'new';
-
-$query .= ' WHERE id = :id';
 
 if (empty($errors)) {
-    $db->query($query, $data);
+    $model->edit($data);
 }
 
 header('location: /succes');

@@ -85,4 +85,16 @@ class Todo
 
         $this->db->query($query, $data);
     }
+
+    public function newTodo(array $data): void
+    {
+        $query = 'INSERT INTO tasks(name, email, description, status) VALUES(:name, :email, :description, :status)';
+
+        $this->db->query($query, [
+            'name'        => $data['name'],
+            'email'       => $data['email'],
+            'description' => $data['description'],
+            'status'      => 'new',
+        ]);
+    }
 }

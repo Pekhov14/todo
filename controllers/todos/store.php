@@ -1,10 +1,9 @@
 <?php
 
-use Core\App;
-use Core\Database;
 use Core\Validator;
+use models\Todo;
 
-$db = App::resolve(Database::class);
+$model = new Todo();
 
 $errors = [];
 
@@ -27,15 +26,14 @@ if (! empty($errors)) {
     ]);
 }
 
-$query = 'INSERT INTO tasks(name, email, description, status) VALUES(:name, :email, :description, :status)';
-
-$db->query($query, [
-    'name'        => $_POST['name'],
-    'email'       => $_POST['email'],
-    'description' => $_POST['description'],
+$data = [
+    'name'        => htmlspecialchars($_POST['name']),
+    'email'       => htmlspecialchars($_POST['email']),
+    'description' => htmlspecialchars($_POST['description']),
     'status'      => 'new',
-]);
+];
 
+$model->newTodo($data);
 
 header('location: /succes');
 exit();
